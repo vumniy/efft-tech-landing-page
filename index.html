@@ -192,12 +192,13 @@
                 
                 <!-- FORM -->
                 <div class="md:col-span-7 bg-zinc-950 border border-zinc-800 rounded-3xl p-12">
-                    <form id="contact-form" action="https://formsubmit.co/tov@efft-tech.com" method="POST" class="space-y-8">
+                   <form id="contact-form" action="https://formsubmit.co/tov@efft-tech.com" method="POST" class="space-y-8">
                         <input type="hidden" name="_subject" value="New EFFT Tech website inquiry">
                         <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://www.efft-tech.com/#contact">
                         <input type="hidden" name="_honey" style="display:none">
-                        
+                        <!-- Optional but useful -->
+                        <input type="hidden" name="_template" value="table">
+                    
                         <div class="grid grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs tracking-widest text-zinc-500 mb-3">FIRST NAME</label>
@@ -210,34 +211,39 @@
                                        class="w-full bg-black border border-zinc-700 focus:border-violet-400 rounded-2xl px-6 py-5 outline-none text-white placeholder-zinc-500">
                             </div>
                         </div>
-                        
+                    
                         <div>
                             <label class="block text-xs tracking-widest text-zinc-500 mb-3">COMPANY / ORGANIZATION</label>
                             <input type="text" name="company"
                                    class="w-full bg-black border border-zinc-700 focus:border-violet-400 rounded-2xl px-6 py-5 outline-none text-white placeholder-zinc-500">
                         </div>
-                        
+                    
                         <div>
                             <label class="block text-xs tracking-widest text-zinc-500 mb-3">EMAIL ADDRESS</label>
                             <input type="email" name="email" required
                                    class="w-full bg-black border border-zinc-700 focus:border-violet-400 rounded-2xl px-6 py-5 outline-none text-white placeholder-zinc-500">
                         </div>
-                        
+                    
                         <div>
                             <label class="block text-xs tracking-widest text-zinc-500 mb-3">MESSAGE / PROJECT BRIEF</label>
                             <textarea name="message" rows="6" required
                                       class="w-full bg-black border border-zinc-700 focus:border-violet-400 rounded-3xl px-6 py-5 outline-none text-white placeholder-zinc-500 resize-y"></textarea>
                         </div>
-                        
-                        <button type="submit"
+                    
+                        <button id="contact-submit-btn" type="submit"
                                 class="w-full py-7 bg-violet-600 hover:bg-violet-500 transition-all text-white font-semibold text-lg rounded-3xl flex items-center justify-center gap-x-3">
-                            SEND MESSAGE
+                            <span class="btn-label">SEND MESSAGE</span>
                             <i class="fa-solid fa-paper-plane"></i>
                         </button>
                     </form>
                     
                     <div id="success-message" class="hidden mt-10 text-center text-emerald-400 font-medium text-lg">
                         ✅ Thank you! Your message has been sent.<br>We’ll reply within one business day.
+                    </div>
+                    
+                    <div id="error-message" class="hidden mt-6 text-center text-red-400 font-medium text-base">
+                        ❌ Sorry — the message could not be sent. Please try again in a minute or email us directly at
+                        <a href="mailto:tov@efft-tech.com" class="underline text-red-300">tov@efft-tech.com</a>.
                     </div>
                 </div>
             </div>
@@ -281,7 +287,7 @@
         </div>
     </footer>
 
-    <script>
+        <script>
         // Mobile menu
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
@@ -293,18 +299,78 @@
                 icon.classList.replace('fa-bars', 'fa-xmark');
             }
         }
-
-        // Form success
+    
+        // Contact form (AJAX / Option B)
         const form = document.getElementById('contact-form');
         const successMsg = document.getElementById('success-message');
-        
-        form.addEventListener('submit', function() {
-            setTimeout(() => {
-                form.style.display = 'none';
-                successMsg.classList.remove('hidden');
-            }, 700);
-        });
-
+        const errorMsg = document.getElementById('error-message');
+        const submitBtn = document.getElementById('contact-submit-btn');
+        const submitBtnLabel = submitBtn?.querySelector('.btn-label');
+    
+        if (form) {
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+    
+                // Reset messages
+                successMsg.classList.add('hidden');
+                errorMsg.classList.add('hidden');
+    
+                // UI loading state
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+                if (submitBtnLabel) submitBtnLabel.textContent = 'SENDING...';
+    
+                try {
+                    const formData = new FormData(form);
+    
+                    // FormSubmit AJAX endpoint
+                    const ajaxEndpoint = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+    
+                    const response = await fetch(ajaxEndpoint, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+    
+                    let result = null;
+                    try {
+                        result = await response.json();
+                    } catch (_) {
+                        // Some proxies return non-JSON on failures; handled below.
+                    }
+    
+                    if (!response.ok) {
+                        throw new Error((result && result.message) || `HTTP ${response.status}`);
+                    }
+    
+                    // FormSubmit usually returns { success: "true", ... }
+                    const isSuccess =
+                        result?.success === true ||
+                        result?.success === "true" ||
+                        /success|sent/i.test(result?.message || '');
+    
+                    if (!isSuccess) {
+                        throw new Error(result?.message || 'Unexpected response from form service');
+                    }
+    
+                    // Success UX
+                    form.reset();
+                    form.style.display = 'none';
+                    successMsg.classList.remove('hidden');
+    
+                } catch (err) {
+                    console.error('Form submit failed:', err);
+                    errorMsg.classList.remove('hidden');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+                    if (submitBtnLabel) submitBtnLabel.textContent = 'SEND MESSAGE';
+                }
+            });
+        }
+    
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -317,7 +383,7 @@
                 }
             });
         });
-
+    
         console.log('%cEFFT Tech landing page ready — pure black + violet', 'color:#a5b4fc; font-family:monospace; font-size:13px');
     </script>
 </body>
