@@ -24,9 +24,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showguides="true"
-     inkscape:zoom="8.8246926"
-     inkscape:cx="13.031615"
-     inkscape:cy="26.913119"
+     inkscape:zoom="0.39"
+     inkscape:cx="-223.07692"
+     inkscape:cy="244.87179"
      inkscape:window-width="1850"
      inkscape:window-height="1016"
      inkscape:window-x="0"
@@ -55,15 +55,17 @@
      r="81.167488"
      style="stroke-width:1.2392" />
   <circle
-     cx="505.42538"
-     cy="287.00323"
+     cx="543.88696"
+     cy="217.77248"
      fill="#a319e7"
      id="circle3"
      r="56.879208"
-     style="stroke-width:1.2392" />
+     style="stroke-width:1.2392"
+     inkscape:transform-center-x="-5.1282051"
+     inkscape:transform-center-y="43.589744" />
   <circle
-     cx="323.26321"
-     cy="442.77054"
+     cx="333.23523"
+     cy="445.49017"
      fill="#a319e7"
      id="circle4"
      r="40.273945"
@@ -77,8 +79,8 @@
      style="stroke-width:1.2392" />
   <!-- White dots -->
   <circle
-     cx="282.36969"
-     cy="202.73779"
+     cx="308.01071"
+     cy="261.71216"
      fill="#ffffff"
      id="circle6"
      r="36.060677"
@@ -98,8 +100,8 @@
      r="44.858982"
      style="stroke-width:1.2392" />
   <circle
-     cx="226.35789"
-     cy="518.11377"
+     cx="216.10149"
+     cy="477.08813"
      fill="#ffffff"
      id="circle9"
      r="51.798489"
@@ -112,8 +114,8 @@
      r="28.749403"
      style="stroke-width:1.2392" />
   <circle
-     cx="201.82176"
-     cy="605.849"
+     cx="235.15509"
+     cy="587.90027"
      fill="#ffffff"
      id="circle11"
      r="21.06637"
