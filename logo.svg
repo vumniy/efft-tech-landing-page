@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none">
+  <title>Constellation Dots Logo</title>
+  <desc>Minimal logo with black circle and violet/white dots on a transparent background.</desc>
+
+  <!-- Outer circle -->
+  <circle cx="511.7" cy="497.1" r="319.7" fill="#000000"/>
+
+  <!-- Violet dots -->
+  <circle cx="575.5" cy="291.7" r="65.5" fill="#A319E7"/>
+  <circle cx="659.9" cy="445.0" r="45.9" fill="#A319E7"/>
+  <circle cx="512.9" cy="570.7" r="32.5" fill="#A319E7"/>
+  <circle cx="351.1" cy="682.0" r="29.3" fill="#A319E7"/>
+
+  <!-- White dots -->
+  <circle cx="479.9" cy="377.0" r="29.1" fill="#FFFFFF"/>
+  <circle cx="389.4" cy="461.9" r="33.4" fill="#FFFFFF"/>
+  <circle cx="589.6" cy="515.6" r="36.2" fill="#FFFFFF"/>
+  <circle cx="434.7" cy="621.5" r="41.8" fill="#FFFFFF"/>
+  <circle cx="599.2" cy="624.9" r="23.2" fill="#FFFFFF"/>
+  <circle cx="414.9" cy="702.3" r="17.0" fill="#FFFFFF"/>
+</svg>
