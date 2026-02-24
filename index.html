@@ -9,11 +9,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
         
-        :root {
-            --accent: 34 211 238;
-        }
-        
-        .tail-container {
+        body {
             font-family: 'Inter', system_ui, sans-serif;
         }
         
@@ -22,15 +18,12 @@
         }
 
         .hero-bg {
-            background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1558494949-ef0d38d3c3c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
+            background: radial-gradient(circle at 50% 30%, rgba(124, 58, 237, 0.12) 0%, transparent 70%);
         }
 
         .nav-link {
             position: relative;
         }
-        
         .nav-link:after {
             content: '';
             position: absolute;
@@ -38,61 +31,43 @@
             height: 2px;
             bottom: -2px;
             left: 0;
-            background-color: rgb(var(--accent));
+            background-color: rgb(124 58 237);
             transition: width 0.3s ease;
         }
-        
         .nav-link:hover:after {
             width: 100%;
         }
 
-        .section-title {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            width: 60%;
-            height: 3px;
-            background: linear-gradient(to right, rgb(var(--accent)), transparent);
-            bottom: -8px;
-            left: 0;
-        }
-
-        .card-hover {
+        .highlight-card {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        .card-hover:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+        .highlight-card:hover {
+            transform: translateY(-8px);
+            border-color: rgb(167 139 250);
         }
 
-        .stat-number {
-            font-variant-numeric: tabular-nums;
+        .violet-glow {
+            text-shadow: 0 0 30px rgb(124 58 237 / 0.5);
         }
     </style>
 </head>
-<body class="tail-container bg-zinc-950 text-zinc-200 overflow-x-hidden">
+<body class="bg-black text-zinc-200 overflow-x-hidden">
     <!-- NAVBAR -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-zinc-950/90 backdrop-blur-lg border-b border-zinc-800">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-lg border-b border-zinc-900">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
             <div class="flex items-center gap-x-3">
-                <div class="w-9 h-9 bg-cyan-400 rounded-xl flex items-center justify-center text-zinc-950 font-bold text-2xl logo-font">E</div>
-                <div>
-                    <span class="logo-font text-3xl font-semibold tracking-tighter text-white">EFFT</span>
-                    <span class="logo-font text-3xl font-semibold tracking-tighter text-cyan-400">TECH</span>
-                </div>
+                <span class="logo-font text-4xl font-semibold tracking-[-2px] text-white">EFFT Tech</span>
             </div>
             
             <div class="hidden md:flex items-center gap-x-10 text-sm font-medium">
                 <a href="#about" class="nav-link text-zinc-300 hover:text-white transition-colors">About</a>
-                <a href="#capabilities" class="nav-link text-zinc-300 hover:text-white transition-colors">Capabilities</a>
-                <a href="#industries" class="nav-link text-zinc-300 hover:text-white transition-colors">Industries</a>
                 <a href="#contact" class="nav-link text-zinc-300 hover:text-white transition-colors">Contact</a>
             </div>
+
+            <a href="#contact" 
+               class="hidden md:block px-8 py-3 bg-violet-600 hover:bg-violet-500 transition-colors text-white font-semibold text-sm rounded-2xl">
+                GET IN TOUCH
+            </a>
 
             <button onclick="toggleMobileMenu()" 
                     class="md:hidden w-11 h-11 flex items-center justify-center text-2xl text-zinc-300 hover:text-white">
@@ -101,16 +76,14 @@
         </div>
         
         <!-- MOBILE MENU -->
-        <div id="mobile-menu" class="hidden md:hidden bg-zinc-900 border-t border-zinc-800 py-6">
+        <div id="mobile-menu" class="hidden md:hidden bg-black border-t border-zinc-900 py-6">
             <div class="flex flex-col items-center gap-y-6 text-lg font-medium">
-                <a href="#about" onclick="toggleMobileMenu()" class="hover:text-cyan-400 transition-colors">About</a>
-                <a href="#capabilities" onclick="toggleMobileMenu()" class="hover:text-cyan-400 transition-colors">Capabilities</a>
-                <a href="#industries" onclick="toggleMobileMenu()" class="hover:text-cyan-400 transition-colors">Industries</a>
-                <a href="#contact" onclick="toggleMobileMenu()" class="hover:text-cyan-400 transition-colors">Contact</a>
+                <a href="#about" onclick="toggleMobileMenu()" class="hover:text-violet-400 transition-colors">About</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="hover:text-violet-400 transition-colors">Contact</a>
                 <a href="#contact" 
                    onclick="toggleMobileMenu()"
-                   class="mt-4 px-8 py-3 bg-cyan-400 hover:bg-cyan-300 transition-colors text-zinc-950 font-semibold rounded-2xl">
-                    Get in touch
+                   class="mt-4 px-10 py-4 bg-violet-600 hover:bg-violet-500 transition-colors text-white font-semibold rounded-2xl">
+                    GET IN TOUCH
                 </a>
             </div>
         </div>
@@ -118,331 +91,153 @@
 
     <!-- HERO -->
     <header class="hero-bg min-h-screen flex items-center pt-20">
-        <div class="max-w-7xl mx-auto px-6 pt-20 pb-32">
-            <div class="max-w-3xl">
-                <div class="inline-flex items-center gap-x-2 bg-white/10 backdrop-blur-md px-5 py-2 rounded-3xl text-xs tracking-[2px] font-medium mb-8">
-                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-                    EST. 2022 • UKRAINE
-                </div>
-                
-                <h1 class="text-7xl md:text-8xl font-semibold tracking-tighter leading-none text-white logo-font">
-                    PRECISION<br>THAT <span class="text-cyan-400">SENSES</span><br>THE FUTURE
+        <div class="max-w-6xl mx-auto px-6 pt-20">
+            <div class="max-w-2xl">
+                <h1 class="text-7xl md:text-8xl font-semibold tracking-[-3px] leading-none text-white logo-font">
+                    PRECISION THAT <span class="text-violet-400 violet-glow">SENSES</span><br>THE FUTURE
                 </h1>
                 
-                <p class="mt-8 text-2xl text-zinc-400 max-w-lg">
-                    Advanced sensing platforms delivering unmatched accuracy, speed, and reliability for the most demanding environments.
+                <p class="mt-10 text-2xl text-zinc-400 leading-tight">
+                    Advanced sensing platforms delivering accuracy, speed, and reliability for demanding environments.
                 </p>
                 
-                <div class="mt-12 flex flex-wrap gap-4">
+                <div class="mt-14 flex flex-wrap gap-5">
                     <a href="#contact" 
-                       class="px-10 py-5 bg-white text-zinc-950 font-semibold text-lg rounded-3xl hover:bg-cyan-400 hover:text-white transition-all flex items-center gap-x-3 group">
+                       class="px-10 py-5 bg-violet-600 hover:bg-violet-500 transition-all text-white font-semibold text-lg rounded-3xl flex items-center gap-x-3">
                         REACH OUT
-                        <i class="fa-solid fa-arrow-right group-active:rotate-45 transition-transform"></i>
+                        <i class="fa-solid fa-arrow-right"></i>
                     </a>
-                    <a href="#capabilities" 
-                       class="px-10 py-5 border border-white/30 hover:border-white/70 text-white font-medium text-lg rounded-3xl transition-all flex items-center">
-                        EXPLORE CAPABILITIES
+                    <a href="#about" 
+                       class="px-10 py-5 border border-zinc-700 hover:border-violet-400 text-white font-medium text-lg rounded-3xl transition-all">
+                        DISCOVER OUR STORY
                     </a>
-                </div>
-                
-                <div class="mt-20 flex items-center gap-x-12 text-sm">
-                    <div class="flex items-center gap-x-3">
-                        <i class="fa-solid fa-shield-halved text-cyan-400 text-2xl"></i>
-                        <div>
-                            <div class="font-semibold">ISO 9001</div>
-                            <div class="text-zinc-500 text-xs">CERTIFIED</div>
-                        </div>
-                    </div>
-                    <div class="h-10 w-px bg-zinc-700"></div>
-                    <div>
-                        <div class="font-semibold text-cyan-400 text-3xl">98.7%</div>
-                        <div class="text-xs tracking-widest text-zinc-500">FIELD RELIABILITY</div>
-                    </div>
                 </div>
             </div>
         </div>
         
         <!-- SCROLL INDICATOR -->
-        <div class="absolute bottom-12 left-1/2 flex flex-col items-center gap-y-2 text-xs tracking-widest">
-            <div class="w-px h-12 bg-gradient-to-b from-transparent via-zinc-400 to-transparent"></div>
-            SCROLL TO DISCOVER
+        <div class="absolute bottom-12 left-1/2 flex flex-col items-center gap-y-3 text-xs tracking-widest text-zinc-500">
+            <div class="w-px h-16 bg-gradient-to-b from-transparent via-zinc-500 to-transparent"></div>
+            SCROLL
         </div>
     </header>
 
     <!-- ABOUT -->
-    <section id="about" class="py-28 bg-zinc-900">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-12 gap-16 items-center">
+    <section id="about" class="py-32 bg-black border-t border-zinc-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-20 items-center">
                 <div class="md:col-span-5">
                     <div class="sticky top-28">
-                        <div class="inline text-cyan-400 text-sm font-medium tracking-widest">OUR STORY</div>
-                        <h2 class="section-title text-5xl font-semibold tracking-tighter text-white mt-3">Engineering the invisible forces that shape tomorrow</h2>
-                        <p class="mt-8 text-zinc-400 leading-relaxed text-lg">
-                            Founded in Ukraine with a global vision, EFFT Tech designs and manufactures next-generation sensing platforms that turn physical phenomena into actionable intelligence.
-                        </p>
-                        <div class="mt-10 flex gap-6">
-                            <div class="text-xs">
-                                <div class="text-zinc-500">HEADQUARTERS</div>
-                                <div class="font-medium text-white">Lviv, Ukraine</div>
-                            </div>
-                            <div class="text-xs">
-                                <div class="text-zinc-500">TEAM</div>
-                                <div class="font-medium text-white">47 engineers &amp; scientists</div>
-                            </div>
-                        </div>
+                        <div class="inline-block px-6 py-2 bg-violet-950/50 text-violet-400 text-xs font-medium tracking-[2px] rounded-3xl">OUR STORY</div>
+                        <h2 class="mt-6 text-6xl font-semibold tracking-tighter leading-none text-white logo-font">
+                            Engineering the invisible forces that shape tomorrow
+                        </h2>
                     </div>
                 </div>
                 
-                <div class="md:col-span-7 space-y-10">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="bg-zinc-950 border border-zinc-800 p-8 rounded-3xl card-hover">
-                            <div class="text-cyan-400 mb-6">
-                                <i class="fa-solid fa-microchip text-5xl"></i>
-                            </div>
-                            <h3 class="text-2xl font-semibold">Unparalleled Sensitivity</h3>
-                            <p class="mt-4 text-zinc-400">Our platforms detect changes at scales previously thought impossible — delivering data that powers smarter decisions.</p>
-                        </div>
-                        <div class="bg-zinc-950 border border-zinc-800 p-8 rounded-3xl card-hover">
-                            <div class="text-cyan-400 mb-6">
-                                <i class="fa-solid fa-bolt text-5xl"></i>
-                            </div>
-                            <h3 class="text-2xl font-semibold">Ultra-Low Power</h3>
-                            <p class="mt-4 text-zinc-400">Designed for edge deployment where energy is precious — months of operation on a single coin cell.</p>
-                        </div>
-                    </div>
+                <div class="md:col-span-7">
+                    <p class="text-xl text-zinc-300 leading-relaxed">
+                        Founded in Ternopil region with a global vision, EFFT Tech develops next-generation sensing platforms that turn physical phenomena into actionable intelligence.
+                    </p>
                     
-                    <div class="bg-gradient-to-br from-zinc-950 to-zinc-900 border border-zinc-700 p-10 rounded-3xl">
-                        <div class="text-sm uppercase tracking-widest text-zinc-500 mb-3">What sets us apart</div>
-                        <ul class="space-y-6 text-lg">
-                            <li class="flex gap-x-4">
-                                <span class="text-cyan-400 text-2xl leading-none mt-1">•</span>
-                                <span>Vertically integrated design-to-fabrication process</span>
-                            </li>
-                            <li class="flex gap-x-4">
-                                <span class="text-cyan-400 text-2xl leading-none mt-1">•</span>
-                                <span>Custom solutions from prototype to high-volume production</span>
-                            </li>
-                            <li class="flex gap-x-4">
-                                <span class="text-cyan-400 text-2xl leading-none mt-1">•</span>
-                                <span>End-to-end security and data integrity built in</span>
-                            </li>
-                        </ul>
+                    <div class="mt-16 grid md:grid-cols-2 gap-8">
+                        <!-- Highlight 1 -->
+                        <div class="highlight-card bg-zinc-950 border border-zinc-800 p-10 rounded-3xl">
+                            <div class="flex items-center gap-x-4">
+                                <div class="w-10 h-px bg-violet-400"></div>
+                                <span class="text-violet-400 font-medium text-sm tracking-widest">01</span>
+                            </div>
+                            <h3 class="text-4xl font-semibold text-white mt-6">Sensitivity</h3>
+                            <p class="mt-4 text-zinc-400 text-lg">— seeing objects in challenging environments.</p>
+                        </div>
+                        
+                        <!-- Highlight 2 -->
+                        <div class="highlight-card bg-zinc-950 border border-zinc-800 p-10 rounded-3xl">
+                            <div class="flex items-center gap-x-4">
+                                <div class="w-10 h-px bg-violet-400"></div>
+                                <span class="text-violet-400 font-medium text-sm tracking-widest">02</span>
+                            </div>
+                            <h3 class="text-4xl font-semibold text-white mt-6">Cost</h3>
+                            <p class="mt-4 text-zinc-400 text-lg">— low cost solutions that drive efficiency and scale.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CAPABILITIES -->
-    <section id="capabilities" class="py-28 bg-black">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <div class="inline-flex items-center gap-x-2 px-6 py-2 bg-zinc-900 rounded-3xl text-xs font-medium text-cyan-400">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                    CORE CAPABILITIES
-                </div>
-                <h2 class="section-title text-5xl font-semibold tracking-tighter mt-6">Sensing at the edge of what’s possible</h2>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-10 card-hover group">
-                    <div class="h-14 w-14 bg-cyan-900/50 text-cyan-400 rounded-2xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-waveform-lines text-3xl"></i>
-                    </div>
-                    <h3 class="text-3xl font-semibold mb-3">Dynamic Environmental Sensing</h3>
-                    <p class="text-zinc-400 leading-relaxed">Real-time monitoring of pressure, temperature, humidity, and gas composition with sub-millisecond response times.</p>
-                    <div class="mt-12 text-xs text-cyan-400 font-medium flex items-center gap-x-2">
-                        LEARN MORE 
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </div>
-                </div>
-                
-                <!-- Card 2 -->
-                <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-10 card-hover group">
-                    <div class="h-14 w-14 bg-cyan-900/50 text-cyan-400 rounded-2xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-location-dot text-3xl"></i>
-                    </div>
-                    <h3 class="text-3xl font-semibold mb-3">High-Precision Motion &amp; Position</h3>
-                    <p class="text-zinc-400 leading-relaxed">6-axis inertial systems and magnetic field mapping that deliver centimeter-level accuracy in the harshest conditions.</p>
-                    <div class="mt-12 text-xs text-cyan-400 font-medium flex items-center gap-x-2">
-                        LEARN MORE 
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </div>
-                </div>
-                
-                <!-- Card 3 -->
-                <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-10 card-hover group">
-                    <div class="h-14 w-14 bg-cyan-900/50 text-cyan-400 rounded-2xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-eye text-3xl"></i>
-                    </div>
-                    <h3 class="text-3xl font-semibold mb-3">Optical &amp; Spectral Analysis</h3>
-                    <p class="text-zinc-400 leading-relaxed">Miniature spectrometers and vision systems for material identification and quality control at the speed of light.</p>
-                    <div class="mt-12 text-xs text-cyan-400 font-medium flex items-center gap-x-2">
-                        LEARN MORE 
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- INDUSTRIES -->
-    <section id="industries" class="py-28 bg-zinc-900">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="section-title text-5xl font-semibold tracking-tighter">Trusted across critical industries</h2>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                <div class="bg-zinc-950 hover:bg-zinc-900 transition-colors border border-zinc-800 rounded-3xl p-8 text-center group">
-                    <div class="mx-auto w-16 h-16 bg-orange-500/10 text-orange-400 rounded-2xl flex items-center justify-center mb-6 text-4xl group-hover:scale-110 transition-transform">
-                        🚗
-                    </div>
-                    <div class="font-semibold text-xl">Automotive</div>
-                    <div class="text-xs text-zinc-500 mt-1">ADAS &amp; EV systems</div>
-                </div>
-                <div class="bg-zinc-950 hover:bg-zinc-900 transition-colors border border-zinc-800 rounded-3xl p-8 text-center group">
-                    <div class="mx-auto w-16 h-16 bg-blue-500/10 text-blue-400 rounded-2xl flex items-center justify-center mb-6 text-4xl group-hover:scale-110 transition-transform">
-                        🏭
-                    </div>
-                    <div class="font-semibold text-xl">Industrial IoT</div>
-                    <div class="text-xs text-zinc-500 mt-1">Predictive maintenance</div>
-                </div>
-                <div class="bg-zinc-950 hover:bg-zinc-900 transition-colors border border-zinc-800 rounded-3xl p-8 text-center group">
-                    <div class="mx-auto w-16 h-16 bg-red-500/10 text-red-400 rounded-2xl flex items-center justify-center mb-6 text-4xl group-hover:scale-110 transition-transform">
-                        🫀
-                    </div>
-                    <div class="font-semibold text-xl">Healthcare</div>
-                    <div class="text-xs text-zinc-500 mt-1">Wearables &amp; diagnostics</div>
-                </div>
-                <div class="bg-zinc-950 hover:bg-zinc-900 transition-colors border border-zinc-800 rounded-3xl p-8 text-center group">
-                    <div class="mx-auto w-16 h-16 bg-purple-500/10 text-purple-400 rounded-2xl flex items-center justify-center mb-6 text-4xl group-hover:scale-110 transition-transform">
-                        📱
-                    </div>
-                    <div class="font-semibold text-xl">Consumer Electronics</div>
-                    <div class="text-xs text-zinc-500 mt-1">Smart devices</div>
-                </div>
-                <div class="bg-zinc-950 hover:bg-zinc-900 transition-colors border border-zinc-800 rounded-3xl p-8 text-center group col-span-2 md:col-span-1">
-                    <div class="mx-auto w-16 h-16 bg-sky-500/10 text-sky-400 rounded-2xl flex items-center justify-center mb-6 text-4xl group-hover:scale-110 transition-transform">
-                        ✈️
-                    </div>
-                    <div class="font-semibold text-xl">Aerospace &amp; Defense</div>
-                    <div class="text-xs text-zinc-500 mt-1">Mission-critical sensing</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- STATS -->
-    <section class="py-20 bg-black border-t border-b border-zinc-800">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-            <div>
-                <div id="stat-1" class="stat-number text-6xl font-semibold text-cyan-400">42</div>
-                <div class="text-sm text-zinc-400 mt-2 tracking-widest">PATENTS GRANTED</div>
-            </div>
-            <div>
-                <div id="stat-2" class="stat-number text-6xl font-semibold text-cyan-400">180</div>
-                <div class="text-sm text-zinc-400 mt-2 tracking-widest">CUSTOMERS WORLDWIDE</div>
-            </div>
-            <div>
-                <div id="stat-3" class="stat-number text-6xl font-semibold text-cyan-400">99.4</div>
-                <div class="text-sm text-zinc-400 mt-2 tracking-widest">% ON-TIME DELIVERY</div>
-            </div>
-            <div>
-                <div id="stat-4" class="stat-number text-6xl font-semibold text-cyan-400">3.2</div>
-                <div class="text-sm text-zinc-400 mt-2 tracking-widest">AVERAGE YEARS PARTNERSHIP</div>
             </div>
         </div>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="py-28 bg-zinc-950">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-12 gap-16">
-                <!-- Left column -->
+    <section id="contact" class="py-32 bg-black border-t border-zinc-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-20">
+                <!-- Left info -->
                 <div class="md:col-span-5">
-                    <div class="text-cyan-400 text-sm font-medium tracking-widest mb-3">LET'S BUILD SOMETHING EXTRAORDINARY</div>
-                    <h2 class="text-6xl font-semibold tracking-tighter leading-none">Reach out to our team</h2>
+                    <h2 class="text-6xl font-semibold tracking-tighter leading-none text-white logo-font">
+                        Let’s build together
+                    </h2>
                     
-                    <div class="mt-16 space-y-10">
-                        <div class="flex gap-x-6">
-                            <div class="text-4xl text-cyan-400">✉️</div>
-                            <div>
-                                <div class="font-medium">General inquiries</div>
-                                <a href="mailto:tov@efft-tech.com" class="text-cyan-400 hover:underline">tov@efft-tech.com</a>
-                            </div>
+                    <div class="mt-16 space-y-12">
+                        <div>
+                            <div class="text-sm text-zinc-500 mb-2">REACH OUT TO OUR TEAM</div>
+                            <a href="mailto:tov@efft-tech.com" 
+                               class="text-3xl text-violet-400 hover:text-violet-300 transition-colors">tov@efft-tech.com</a>
                         </div>
-                        <div class="flex gap-x-6">
-                            <div class="text-4xl text-cyan-400">📍</div>
-                            <div>
-                                <div class="font-medium">Lviv, Ukraine</div>
-                                <div class="text-zinc-400 text-sm">Science &amp; Technology Park</div>
-                            </div>
+                        
+                        <div>
+                            <div class="text-sm text-zinc-500 mb-2">LOCATION</div>
+                            <div class="text-2xl text-zinc-300">Ternopil region, Ukraine</div>
                         </div>
-                        <div class="flex gap-x-6">
-                            <div class="text-4xl text-cyan-400">☎️</div>
-                            <div>
-                                <div class="font-medium">+380 32 000 0000</div>
-                                <div class="text-xs text-zinc-500">Business hours only</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-20 text-xs text-zinc-500">
-                        All messages are answered within one business day.<br>
-                        We look forward to hearing from you.
                     </div>
                 </div>
                 
                 <!-- FORM -->
-                <div class="md:col-span-7 bg-zinc-900 border border-zinc-800 rounded-3xl p-10 md:p-16">
+                <div class="md:col-span-7 bg-zinc-950 border border-zinc-800 rounded-3xl p-12">
                     <form id="contact-form" action="https://formsubmit.co/tov@efft-tech.com" method="POST" class="space-y-8">
-                        <input type="hidden" name="_subject" value="New website inquiry from EFFT Tech">
+                        <input type="hidden" name="_subject" value="New EFFT Tech website inquiry">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_next" value="#contact">
                         <input type="hidden" name="_honey" style="display:none">
                         
                         <div class="grid grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-xs tracking-widest text-zinc-500 mb-2">FIRST NAME</label>
+                                <label class="block text-xs tracking-widest text-zinc-500 mb-3">FIRST NAME</label>
                                 <input type="text" name="first_name" required
-                                       class="w-full bg-zinc-950 border border-zinc-700 focus:border-cyan-400 rounded-2xl px-6 py-5 outline-none text-white placeholder-zinc-500">
+                                       class="w-full bg-black border border-zinc-700 focus:border-violet-400 rounded-2xl px-6 py-5 outline-none text-white placeholder-zinc-500">
                             </div>
                             <div>
-                                <label class="block text-xs tracking-widest text-zinc-500 mb-2">LAST NAME</label>
+                                <label class="block text-xs tracking-widest text-zinc-500 mb-3">LAST NAME</label>
                                 <input type="text" name="last_name" required
-                                       class="w-full bg-zinc-950 border border-zinc-700 focus:border-cyan-400 rounded-2xl px-6 py-5 outline-none text-white placeholder-zinc-500">
+                                       class="w-full bg-black border border-zinc-700 focus:border-violet-400 rounded-2xl px-6 py-5 outline-none text-white placeholder-zinc-500">
                             </div>
                         </div>
                         
                         <div>
-                            <label class="block text-xs tracking-widest text-zinc-500 mb-2">COMPANY / ORGANIZATION</label>
-                            <input type="text" name="company" 
-                                   class="w-full bg-zinc-950 border border-zinc-700 focus:border-cyan-400 rounded-2xl px-6 py-5 outline-none text-white placeholder-zinc-500">
+                            <label class="block text-xs tracking-widest text-zinc-500 mb-3">COMPANY / ORGANIZATION</label>
+                            <input type="text" name="company"
+                                   class="w-full bg-black border border-zinc-700 focus:border-violet-400 rounded-2xl px-6 py-5 outline-none text-white placeholder-zinc-500">
                         </div>
                         
                         <div>
-                            <label class="block text-xs tracking-widest text-zinc-500 mb-2">EMAIL ADDRESS</label>
+                            <label class="block text-xs tracking-widest text-zinc-500 mb-3">EMAIL ADDRESS</label>
                             <input type="email" name="email" required
-                                   class="w-full bg-zinc-950 border border-zinc-700 focus:border-cyan-400 rounded-2xl px-6 py-5 outline-none text-white placeholder-zinc-500">
+                                   class="w-full bg-black border border-zinc-700 focus:border-violet-400 rounded-2xl px-6 py-5 outline-none text-white placeholder-zinc-500">
                         </div>
                         
                         <div>
-                            <label class="block text-xs tracking-widest text-zinc-500 mb-2">MESSAGE / PROJECT BRIEF</label>
+                            <label class="block text-xs tracking-widest text-zinc-500 mb-3">MESSAGE / PROJECT BRIEF</label>
                             <textarea name="message" rows="6" required
-                                      class="w-full bg-zinc-950 border border-zinc-700 focus:border-cyan-400 rounded-3xl px-6 py-5 outline-none text-white placeholder-zinc-500 resize-none"></textarea>
+                                      class="w-full bg-black border border-zinc-700 focus:border-violet-400 rounded-3xl px-6 py-5 outline-none text-white placeholder-zinc-500 resize-y"></textarea>
                         </div>
                         
                         <button type="submit"
-                                class="w-full py-6 bg-gradient-to-r from-cyan-400 to-cyan-300 hover:from-cyan-300 hover:to-cyan-400 text-zinc-950 font-semibold text-lg rounded-3xl transition-all flex items-center justify-center gap-x-3 group">
+                                class="w-full py-7 bg-violet-600 hover:bg-violet-500 transition-all text-white font-semibold text-lg rounded-3xl flex items-center justify-center gap-x-3">
                             SEND MESSAGE
-                            <i class="fa-solid fa-paper-plane group-active:translate-x-1 transition-transform"></i>
+                            <i class="fa-solid fa-paper-plane"></i>
                         </button>
                     </form>
                     
-                    <div id="success-message" class="hidden mt-8 text-center text-emerald-400 font-medium">
-                        ✅ Thank you! Your message has been sent. We'll reply shortly.
+                    <div id="success-message" class="hidden mt-10 text-center text-emerald-400 font-medium text-lg">
+                        ✅ Thank you! Your message has been sent.<br>We’ll reply within one business day.
                     </div>
                 </div>
             </div>
@@ -450,53 +245,44 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-black py-20 border-t border-zinc-800">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-y-10">
+    <footer class="bg-black border-t border-zinc-900 py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-y-12">
                 <div>
-                    <div class="flex items-center gap-x-3">
-                        <div class="w-8 h-8 bg-cyan-400 rounded-2xl flex items-center justify-center text-zinc-950 font-bold text-3xl logo-font">E</div>
-                        <span class="logo-font text-4xl font-semibold tracking-tighter">EFFT TECH</span>
-                    </div>
-                    <p class="text-xs text-zinc-500 mt-6">© 2026 EFFT Tech LLC. All rights reserved.</p>
+                    <span class="logo-font text-4xl font-semibold tracking-[-2px] text-white">EFFT Tech</span>
+                    <p class="text-xs text-zinc-500 mt-8">© 2026 EFFT Tech LLC. All rights reserved.</p>
                 </div>
                 
-                <div class="flex gap-x-16">
+                <div class="flex gap-x-20">
                     <div>
-                        <div class="text-xs font-medium text-zinc-400 mb-4">COMPANY</div>
-                        <div class="space-y-3 text-sm">
-                            <a href="#" class="block hover:text-cyan-400">About Us</a>
-                            <a href="#" class="block hover:text-cyan-400">Careers</a>
-                            <a href="#" class="block hover:text-cyan-400">Newsroom</a>
+                        <div class="text-xs font-medium text-zinc-400 mb-6">COMPANY</div>
+                        <div class="space-y-4 text-sm">
+                            <a href="#about" class="block hover:text-violet-400 transition-colors">About</a>
+                            <a href="#" class="block hover:text-violet-400 transition-colors">Careers</a>
                         </div>
                     </div>
                     <div>
-                        <div class="text-xs font-medium text-zinc-400 mb-4">RESOURCES</div>
-                        <div class="space-y-3 text-sm">
-                            <a href="#" class="block hover:text-cyan-400">Technical Library</a>
-                            <a href="#" class="block hover:text-cyan-400">Application Notes</a>
-                            <a href="#" class="block hover:text-cyan-400">Support Portal</a>
+                        <div class="text-xs font-medium text-zinc-400 mb-6">RESOURCES</div>
+                        <div class="space-y-4 text-sm">
+                            <a href="#" class="block hover:text-violet-400 transition-colors">Technical Library</a>
+                            <a href="#" class="block hover:text-violet-400 transition-colors">Support</a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="text-right">
-                    <div class="text-xs uppercase tracking-widest text-zinc-500">FOLLOW OUR JOURNEY</div>
-                    <div class="flex gap-x-6 mt-6 text-2xl">
-                        <a href="#" class="hover:text-cyan-400"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="#" class="hover:text-cyan-400"><i class="fa-brands fa-x-twitter"></i></a>
+                <div>
+                    <div class="text-xs font-medium text-zinc-400 mb-6">FOLLOW OUR JOURNEY</div>
+                    <div class="flex gap-x-8 text-3xl">
+                        <a href="#" class="hover:text-violet-400 transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" class="hover:text-violet-400 transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
                     </div>
                 </div>
-            </div>
-            
-            <div class="mt-20 text-center text-[10px] text-zinc-600">
-                This is a demonstration landing page. Replace images, links and email endpoint as needed.
             </div>
         </div>
     </footer>
 
     <script>
-        // Tailwind script already loaded via CDN
+        // Mobile menu
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             const icon = document.getElementById('menu-icon');
@@ -508,75 +294,31 @@
             }
         }
 
-        // Form success handling
+        // Form success
         const form = document.getElementById('contact-form');
         const successMsg = document.getElementById('success-message');
         
-        form.addEventListener('submit', function(e) {
-            // Let the formsubmit.co handle the POST
-            // Show success immediately for demo (real submission happens)
+        form.addEventListener('submit', function() {
             setTimeout(() => {
                 form.style.display = 'none';
                 successMsg.classList.remove('hidden');
-            }, 800);
+            }, 700);
         });
 
-        // Animate stats on scroll
-        function animateValue(id, start, end, duration) {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                const value = Math.floor(progress * (end - start) + start);
-                document.getElementById(id).innerHTML = value + (id === 'stat-3' ? '%' : '');
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                } else {
-                    document.getElementById(id).innerHTML = end + (id === 'stat-3' ? '%' : '');
-                }
-            };
-            window.requestAnimationFrame(step);
-        }
-
-        // Trigger stats when scrolled into view
-        let statsAnimated = false;
-        window.addEventListener('scroll', () => {
-            if (!statsAnimated && window.scrollY > 1800) {
-                statsAnimated = true;
-                animateValue("stat-1", 0, 42, 1800);
-                animateValue("stat-2", 0, 180, 2200);
-                animateValue("stat-3", 90, 99.4, 1600);
-                animateValue("stat-4", 0, 3.2, 2000);
-            }
-        });
-
-        // Smooth scroll for anchor links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (this.getAttribute('href') === '#') return;
-                e.preventDefault();
+            anchor.addEventListener('click', function(e) {
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    const headerOffset = 80;
-                    const elementPosition = target.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.scrollY - headerOffset;
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
+                    e.preventDefault();
+                    const offset = 90;
+                    const topPos = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top: topPos, behavior: 'smooth' });
                 }
             });
         });
 
-        // Close mobile menu on resize
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
-                document.getElementById('mobile-menu').classList.add('hidden');
-                document.getElementById('menu-icon').classList.replace('fa-xmark', 'fa-bars');
-            }
-        });
-        
-        console.log('%cEFFT Tech landing page ready 🚀', 'color:#22d3ee; font-family:monospace');
+        console.log('%cEFFT Tech landing page ready — pure black + violet', 'color:#a5b4fc; font-family:monospace; font-size:13px');
     </script>
 </body>
 </html>
