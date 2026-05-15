@@ -28,7 +28,7 @@
      inkscape:cx="217.94872"
      inkscape:cy="24.358975"
      inkscape:window-width="1850"
-     inkscape:window-height="1016"
+     inkscape:window-height="1136"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -53,14 +53,14 @@
      fill="#a319e7"
      id="circle2"
      r="81.167488"
-     style="stroke-width:1.2392" />
+     style="stroke-width:1.2392;fill:#1398af;fill-opacity:1" />
   <circle
      cx="507.9895"
      cy="248.5417"
      fill="#a319e7"
      id="circle3"
      r="56.879208"
-     style="stroke-width:1.2392"
+     style="stroke-width:1.2392;fill:#1398af;fill-opacity:1"
      inkscape:transform-center-x="-5.1282051"
      inkscape:transform-center-y="43.589744" />
   <circle
@@ -69,14 +69,14 @@
      fill="#a319e7"
      id="circle4"
      r="40.273945"
-     style="stroke-width:1.2392" />
+     style="stroke-width:1.2392;fill:#1398af;fill-opacity:1" />
   <circle
      cx="122.76091"
      cy="580.69324"
      fill="#a319e7"
      id="circle5"
      r="36.308514"
-     style="stroke-width:1.2392" />
+     style="stroke-width:1.2392;fill:#1398af;fill-opacity:1" />
   <!-- White dots -->
   <circle
      cx="292.18613"
