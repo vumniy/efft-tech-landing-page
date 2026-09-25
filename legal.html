@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <link rel="shortcut icon" href="logo.svg">
+    <title>Legal notice | EFFT Tech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .logo-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: rgb(124 58 237);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover:after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-black text-zinc-200 overflow-x-hidden">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-lg border-b border-zinc-900">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-x-3">
+                <img src="logo.svg" alt="EFFT Tech logo" class="w-10 h-10 md:w-11 md:h-11 object-contain" />
+                <span class="logo-font text-4xl font-semibold tracking-[-2px] text-white">EFFT Tech</span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-x-10 text-sm font-medium">
+                <a href="index.html#about" class="nav-link text-zinc-300 hover:text-white transition-colors">About</a>
+                <a href="index.html#contact" class="nav-link text-zinc-300 hover:text-white transition-colors">Contact</a>
+            </div>
+
+            <a href="index.html#contact" 
+               class="hidden md:block px-8 py-3 hover:bg-violet-500 transition-colors text-white font-semibold text-sm rounded-2xl">
+                GET IN TOUCH
+            </a>
+
+            <button onclick="toggleMobileMenu()" 
+                    class="md:hidden w-11 h-11 flex items-center justify-center text-2xl text-zinc-300 hover:text-white">
+                <i class="fa-solid fa-bars" id="menu-icon"></i>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-black border-t border-zinc-900 py-6">
+            <div class="flex flex-col items-center gap-y-6 text-lg font-medium">
+                <a href="index.html#about" onclick="toggleMobileMenu()" class="hover:text-violet-400 transition-colors">About</a>
+                <a href="index.html#contact" onclick="toggleMobileMenu()" class="hover:text-violet-400 transition-colors">Contact</a>
+                <a href="index.html#contact" 
+                   onclick="toggleMobileMenu()"
+                   class="mt-4 px-10 py-4 bg-violet-600 hover:bg-violet-500 transition-colors text-white font-semibold rounded-2xl">
+                    GET IN TOUCH
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-40 pb-32">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="inline-block px-6 py-2 bg-violet-950/50 text-violet-400 text-xs font-medium tracking-[2px] rounded-3xl">LEGAL</div>
+            <h1 class="mt-6 text-6xl font-semibold tracking-tighter leading-none text-white logo-font">
+                Legal notice
+            </h1>
+
+            <div class="mt-16 space-y-8 text-lg text-zinc-300 leading-relaxed">
+                <p>
+                    LLC “EFFT Tech”<br>
+                    Ukrainian legal name: TOV “EFFT Tech”
+                </p>
+                <p>
+                    Registration number (EDRPOU): 46146268
+                </p>
+                <p>
+                    Legal address:<br>
+                    6 Makarivka Street, Narayiv<br>
+                    Ternopil district, Ternopil region, 47513<br>
+                    Ukraine
+                </p>
+                <p>
+                    Email:
+                    <a href="mailto:tov@efft-tech.com" class="text-white hover:text-violet-400 transition-colors">tov@efft-tech.com</a>
+                </p>
+                <p>
+                    The company record is available in the
+                    <a href="https://usr.minjust.gov.ua/" class="text-white hover:text-violet-400 transition-colors underline underline-offset-4">Unified State Register of Ukraine</a>.
+                </p>
+                <p class="text-zinc-400">
+                    This website is published in English. It describes the company in general terms and does not list products, management names, or individual roles.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-black border-t border-zinc-900 py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-y-12">
+                <div>
+                    <span class="logo-font text-4xl font-semibold tracking-[-2px] text-white">EFFT Tech</span>
+                    <p class="text-xs text-zinc-500 mt-8">© 2026 LLC “EFFT Tech”, EDRPOU 46146268. All rights reserved.</p>
+                    <p class="text-xs text-zinc-500 mt-3 leading-relaxed">
+                        LLC “EFFT Tech” (Ukrainian legal name: TOV “EFFT Tech”)<br>
+                        6 Makarivka Street, Narayiv, Ternopil district,<br>
+                        Ternopil region, 47513, Ukraine<br>
+                        <a href="mailto:tov@efft-tech.com" class="hover:text-violet-400 transition-colors">tov@efft-tech.com</a>
+                    </p>
+                </div>
+                
+                <div class="flex gap-x-20">
+                    <div>
+                        <div class="text-xs font-medium text-zinc-400 mb-6">COMPANY</div>
+                        <div class="space-y-4 text-sm">
+                            <a href="index.html#about" class="block hover:text-violet-400 transition-colors">About</a>
+                            <a href="legal.html" class="block hover:text-violet-400 transition-colors">Legal notice</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-xs font-medium text-zinc-400 mb-6">CONTACT</div>
+                        <div class="space-y-4 text-sm">
+                            <a href="index.html#contact" class="block hover:text-violet-400 transition-colors">Get in touch</a>
+                            <a href="mailto:tov@efft-tech.com" class="block hover:text-violet-400 transition-colors">tov@efft-tech.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.replace('fa-xmark', 'fa-bars');
+            } else {
+                icon.classList.replace('fa-bars', 'fa-xmark');
+            }
+        }
+    </script>
+</body>
+</html>
